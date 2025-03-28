@@ -8,7 +8,7 @@ import Login from './components/Login';
 import UserList from './components/UserList';
 import Navbar from './components/Navbar';
 import { useContext } from 'react';
-
+import ErrorPage from './components/ErrorPage';
 /**
    * Protected Route wrapper component
    * Redirects to login if user is not authenticated
@@ -36,20 +36,21 @@ function App() {
 
     return (
         <div className={`${isDarkMode ? 'dark' : ''}`}>
-                <Router>
-                    <Routes>
-                        <Route path="/login" element={<Login />} />
-                        <Route
-                            path="/users"
-                            element={
-                                <PrivateRoute>
-                                    <UserList />
-                                </PrivateRoute>
-                            }
-                        />
-                        <Route path="/" element={<Navigate to="/login" />} />
-                    </Routes>
-                </Router>
+            <Router>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route
+                        path="/users"
+                        element={
+                            <PrivateRoute>
+                                <UserList />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route path="/" element={<Navigate to="/login" />} />
+                    <Route path="*" element={<ErrorPage />} />
+                </Routes>
+            </Router>
         </div>
     );
 }
