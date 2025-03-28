@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/api';
 
+/**
+ * Login Component
+ * Handles user login functionality
+ */
 const Login = () => {
 
     const navigate = useNavigate();
@@ -12,12 +16,19 @@ const Login = () => {
 
     const token = localStorage.getItem('token');
 
+    /**
+     * Effect hook to navigate to users page if token exists
+     */
     useEffect(() => {
         if (token) {
             navigate('/users');
         }
     }, [token]);
 
+    /**
+     * Handles form submission
+     * Attempts to login with provided credentials
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -33,6 +44,10 @@ const Login = () => {
         }
     };
 
+    /**
+     * Renders the login component
+     * Displays a login form with email and password inputs
+     */
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100">
             <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-2xl">

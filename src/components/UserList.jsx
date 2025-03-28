@@ -3,6 +3,10 @@ import { getUsers, updateUser, deleteUser } from '../services/api';
 import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
+/**
+ * User List Component
+ * Displays a list of users with search and edit functionality
+ */
 const UserList = () => {
 
     const [users, setUsers] = useState([]);
@@ -14,10 +18,16 @@ const UserList = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    /**
+     * Effect hook to fetch users when page or update/delete functions change
+     */
     useEffect(() => {
         fetchUsers();
     }, [page, updateUser, deleteUser]);
 
+    /**
+     * Fetches users from the API
+     */
     const fetchUsers = async () => {
         try {
             setIsLoading(true);
@@ -31,11 +41,19 @@ const UserList = () => {
         }
     };
 
+    /**
+     * Handles editing a user
+     * Opens the edit modal with the user's data
+     */
     const handleEdit = (user) => {
         setEditUser({ ...user });
         setIsModalOpen(true);
     };
 
+    /**
+     * Handles updating a user
+     * Updates the user's data and closes the modal
+     */
     const handleUpdate = async () => {
         try {
             setIsLoading(true);
@@ -51,6 +69,10 @@ const UserList = () => {
         }
     };
 
+    /**
+     * Handles deleting a user
+     * Deletes the user and refreshes the list
+     */
     const handleDelete = async (id) => {
         try {
             setIsLoading(true);
@@ -66,6 +88,9 @@ const UserList = () => {
         }
     };
 
+    /**
+     * Filters users based on search term
+     */
     const filteredUsers = users.filter(user => {
         const search = searchTerm.toLowerCase();
         return (
@@ -75,6 +100,10 @@ const UserList = () => {
         );
     });
 
+    /**
+     * Renders the user list component
+     * Displays a list of users with search and edit functionality
+     */
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8">
             {

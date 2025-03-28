@@ -1,10 +1,18 @@
 import { createContext, useState } from "react";
 
+/**
+ * Theme Context
+ * Provides dark mode functionality
+ */
 export const ThemeContext = createContext({
     isDarkMode: false,
     toggleDarkMode: () => { }
 });
 
+/**
+ * Theme Provider
+ * Provides dark mode functionality to the application
+ */
 export const ThemeProvider = ({ children }) => {
 
     const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('theme') === 'dark' ? true : false);

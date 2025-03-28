@@ -4,17 +4,29 @@ import { ThemeContext } from '../context/ThemeContext';
 import { FiUsers, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
 import { BsSun, BsMoon } from 'react-icons/bs';
 
+/**
+ * Navigation Bar Component
+ * Displays a navigation bar with logo, theme toggle, and logout button
+ */
 const Navbar = () => {
     
     const navigate = useNavigate();
     const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    /**
+     * Handles logout functionality
+     * Removes token from local storage and navigates to login page
+     */
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/login');
     };
 
+    /**
+     * Renders the navigation bar component
+     * Displays a navigation bar with logo, theme toggle, and logout button
+     */
     return (
         <nav className="bg-white dark:bg-gray-800 shadow-md backdrop-blur-md bg-opacity-80 dark:bg-opacity-80 sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
